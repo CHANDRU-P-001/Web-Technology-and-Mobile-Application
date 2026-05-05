@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — AI Tools Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/auth.css">
+</head>
+<body>
+  <div class="bg-particles" id="particles"></div>
+  <div class="ring ring1"></div>
+  <div class="ring ring2"></div>
+  <div class="ring ring3"></div>
+
+  <div class="auth-container">
+    <!-- LEFT PANEL -->
+    <div class="hero-panel">
+      <div class="hero-content">
+        <div class="hero-icon">🤖</div>
+        <h1 class="hero-title">WELCOME<br><span>BACK</span></h1>
+        <p class="hero-subtitle">Your AI command center is waiting for you</p>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num">60+</span><span class="stat-lbl">AI Tools</span></div>
+          <div class="stat-item"><span class="stat-num">20</span><span class="stat-lbl">Categories</span></div>
+          <div class="stat-item"><span class="stat-num">∞</span><span class="stat-lbl">Explore</span></div>
+        </div>
+        <div class="orbit-system">
+          <div class="planet core">AI</div>
+          <div class="orbit o1"><div class="moon m1">🚀</div></div>
+          <div class="orbit o2"><div class="moon m2">⚡</div></div>
+          <div class="orbit o3"><div class="moon m3">🎯</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL - Login Form -->
+    <div class="form-panel">
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-badge">SECURE LOGIN</div>
+          <h2>Welcome Back</h2>
+          <p>Enter your credentials to continue</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for cat, msg in messages %}
+              <div class="alert alert-{{ cat }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/login" class="auth-form" id="loginForm">
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">📧</span>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔐</span>
+              <input type="password" id="password" name="password" placeholder="Enter your password" required>
+              <button type="button" class="eye-btn" onclick="togglePass('password','eyeIcon1')">
+                <span id="eyeIcon1">👁️</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="remember-row">
+            <label class="check-label">
+              <input type="checkbox" name="remember"> Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">⚡ Enter the Hub</span>
+            <div class="btn-glow"></div>
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Don't have an account? <a href="/register">Register here →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../static/js/auth.js"></script>
+</body>
+</html>

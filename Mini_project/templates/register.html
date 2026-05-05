@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — AI Tools Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/auth.css">
+</head>
+<body>
+  <!-- Animated background particles -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Floating rings decoration -->
+  <div class="ring ring1"></div>
+  <div class="ring ring2"></div>
+  <div class="ring ring3"></div>
+
+  <div class="auth-container">
+    <!-- LEFT PANEL - Hero Section -->
+    <div class="hero-panel">
+      <div class="hero-content">
+        <div class="hero-icon">🤖</div>
+        <h1 class="hero-title">AI TOOLS<br><span>HUB</span></h1>
+        <p class="hero-subtitle">Your gateway to 60+ AI tools across 20 categories</p>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num">60+</span><span class="stat-lbl">AI Tools</span></div>
+          <div class="stat-item"><span class="stat-num">20</span><span class="stat-lbl">Categories</span></div>
+          <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Free</span></div>
+        </div>
+        <div class="orbit-system">
+          <div class="planet core">AI</div>
+          <div class="orbit o1"><div class="moon m1">📚</div></div>
+          <div class="orbit o2"><div class="moon m2">🎬</div></div>
+          <div class="orbit o3"><div class="moon m3">💻</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL - Register Form -->
+    <div class="form-panel">
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-badge">NEW ACCOUNT</div>
+          <h2>Create Account</h2>
+          <p>Join the AI revolution today</p>
+        </div>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for cat, msg in messages %}
+              <div class="alert alert-{{ cat }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/register" class="auth-form" id="registerForm">
+          <div class="input-group">
+            <label for="fullname">Full Name</label>
+            <div class="input-wrap">
+              <span class="input-icon">👤</span>
+              <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required autocomplete="off">
+              <span class="input-check" id="nameCheck"></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">📧</span>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+              <span class="input-check" id="emailCheck"></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="username">Username</label>
+            <div class="input-wrap">
+              <span class="input-icon">🎮</span>
+              <input type="text" id="username" name="username" placeholder="Choose a username" required autocomplete="off">
+              <span class="input-check" id="usernameCheck"></span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔐</span>
+              <input type="password" id="password" name="password" placeholder="Create strong password" required>
+              <button type="button" class="eye-btn" onclick="togglePass('password','eyeIcon1')">
+                <span id="eyeIcon1">👁️</span>
+              </button>
+            </div>
+            <div class="strength-bar" id="strengthBar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <div class="strength-label" id="strengthLabel"></div>
+          </div>
+
+          <div class="input-group">
+            <label for="confirm_password">Confirm Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔑</span>
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat your password" required>
+              <button type="button" class="eye-btn" onclick="togglePass('confirm_password','eyeIcon2')">
+                <span id="eyeIcon2">👁️</span>
+              </button>
+            </div>
+            <div class="match-label" id="matchLabel"></div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">🚀 Launch Account</span>
+            <div class="btn-glow"></div>
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Already have an account? <a href="/login">Login here →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../static/js/auth.js"></script>
+</body>
+</html>
